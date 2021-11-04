@@ -1,10 +1,10 @@
-package Package5;
+package primeNum;
 
 import java.util.ArrayList;
 
-public class PrimeNumbersSqrt {
+public class PrimeNumbersForEach {
 
-	static final double MAX_NUM = Math.pow(10,3);
+static final double MAX_NUM = Math.pow(10,3);
 	
 	public static double sqrt(int i) {
 		return Math.pow(i, 0.5);
@@ -12,33 +12,23 @@ public class PrimeNumbersSqrt {
 	
 	public static void main(String[] args) {
 		ArrayList<Integer> primes = new ArrayList<Integer>();
-		ArrayList<Integer> primesLessThanSqrtN = new ArrayList<Integer>();
 		
 		//Variables
 		primes.add(2);
-		double root;
 		boolean isPrime;
 		int iterations=0;
 		
 		for (int i = 3; i < MAX_NUM; i++) {
-			root = sqrt(i);
 			isPrime = true;
-			int j = 0;
 			
-			while (primes.get(j)<=root) {
-				primesLessThanSqrtN.add(primes.get(j));
-				j++;
+			for (int k = 0; k < primes.size(); k++) {
 				iterations++;
-			}
-			for (int k = 0; k < primesLessThanSqrtN.size(); k++) {
-				iterations++;
-				if (i % primesLessThanSqrtN.get(k) == 0) {
+				if (i % primes.get(k) == 0) {
 					isPrime = false;
 					break;
 				}
 			}
 			if(isPrime) primes.add(i);
-			primesLessThanSqrtN.clear();
 		}
 		System.out.println(primes);
 		System.out.println("Iterations: "+iterations);
